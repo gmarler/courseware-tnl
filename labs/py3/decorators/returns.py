@@ -26,6 +26,16 @@ TypeError: Incorrect return type
 '''
 
 # Implement your returns decorator here:
+def returns(type):
+  def decorator(func):
+    def wrapper(*args, **kwargs):
+      returnval = func(*args, **kwargs)
+      if isinstance(returnval, type):
+        return returnval
+      else:
+        raise TypeError("Incorrect return type")
+    return wrapper
+  return decorator
 
 
 
